@@ -1,0 +1,14 @@
+v0.1
+
+
+# rareté (couleur): nom (attaque,fréquence,vitesse,nombre,air/sol),
+communes (50,100,255):
+Light infantry bot, Light tank, Fighter bots, Laser bot, Laser drones,
+rares (250,220,50):
+Heavy infantry bot, Heavy tank, Suicide bomber,
+épiques (250,0,250):
+Plasma bot, Missile truck, Laser tower,
+légendaires (70,255,150):
+Missile silot, Grenade launcher tank,
+mythiques (255,70,50):
+Bomber aircraft, Grenade launcher aircraft,
