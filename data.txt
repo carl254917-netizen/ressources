@@ -1,0 +1,2 @@
+Ceci est un fichier exemple.
+Utilisé pour lire du texte depuis Python.
