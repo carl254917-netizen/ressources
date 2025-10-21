@@ -1,0 +1,14 @@
+{
+    "Fire Elemental": {
+        "image": "assets/fire.png",
+        "rarity": "Rare",
+        "level": 3,
+        "experience": 1200
+    },
+    "Wind Spirit": {
+        "image": "assets/wind.png",
+        "rarity": "Common",
+        "level": 1,
+        "experience": 300
+    }
+}
