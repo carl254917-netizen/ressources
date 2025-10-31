@@ -273,11 +273,12 @@ def run_game():
     pygame.time.wait(3000)
     pygame.display.quit()
     pygame.quit()
-#    sys.exit()
+    sys.exit()
 
 # Lancement
 show_menu()
 run_game()
+
 
 
 
