@@ -24,6 +24,7 @@ pygame.init()
 WIDTH, HEIGHT = 800, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Pixel Smash")
+pygame.mouse.set_visible(False)
 clock = pygame.time.Clock()
 FONT = pygame.font.SysFont("Arial", 24)
 BIG_FONT = pygame.font.SysFont("Arial", 48)
@@ -235,7 +236,6 @@ def main():
     while running:
         screen.fill(BLACK)
         keys = pygame.key.get_pressed()
-        pygame.mouse.set_visible(False)
 
         # Relance manuelle si la balle est attachée à la raquette
         if ball.attached_to_paddle and keys[pygame.K_SPACE]:
@@ -340,6 +340,7 @@ def main():
     sys.exit()
 
 main()
+
 
 
 
