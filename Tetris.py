@@ -272,12 +272,14 @@ def run_game():
     pygame.display.flip()
     pygame.time.wait(3000)
     pygame.display.quit()
+    pygame.mixer.quit()
     pygame.quit()
     sys.exit()
 
 # Lancement
 show_menu()
 run_game()
+
 
 
 
