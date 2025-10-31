@@ -271,13 +271,13 @@ def run_game():
     screen.blit(font.render(f"Game Over! Score: {score}", True, RED), (SCREEN_WIDTH // 2 - 100, SCREEN_HEIGHT // 2))
     pygame.display.flip()
     pygame.time.wait(3000)
-    pygame.display.quit()
-#    pygame.quit()
-#    sys.exit()
+    pygame.quit()
+    sys.exit()
 
 # Lancement
 show_menu()
 run_game()
+
 
 
 
