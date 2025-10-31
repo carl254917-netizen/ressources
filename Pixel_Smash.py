@@ -40,7 +40,6 @@ YELLOW = (255, 255, 0)
 PURPLE = (180, 50, 180)
 
 incertitude_rebond=5
-pygame.mouse.set_visible(False)
 
 def normalize_vector(vx, vy, target_speed):
     length = math.sqrt(vx**2 + vy**2)
@@ -236,6 +235,7 @@ def main():
     while running:
         screen.fill(BLACK)
         keys = pygame.key.get_pressed()
+        pygame.mouse.set_visible(False)
 
         # Relance manuelle si la balle est attachée à la raquette
         if ball.attached_to_paddle and keys[pygame.K_SPACE]:
@@ -340,5 +340,6 @@ def main():
     sys.exit()
 
 main()
+
 
 
