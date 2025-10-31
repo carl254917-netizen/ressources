@@ -271,21 +271,8 @@ def run_game():
     screen.blit(font.render(f"Game Over! Score: {score}", True, RED), (SCREEN_WIDTH // 2 - 100, SCREEN_HEIGHT // 2))
     pygame.display.flip()
     pygame.time.wait(3000)
-    for i in range(10):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    pygame.quit()
-                    sys.exit()
-        screen.fill(BLACK)
-        screen.blit(font.render(f"Next Game in "+str(10-i)+" sec.", True, RED), (SCREEN_WIDTH // 2 - 100, SCREEN_HEIGHT // 2))
-        pygame.display.flip()
-        pygame.time.wait(1000)
-    run_game()
 
 # Lancement
 show_menu()
 run_game()
+
