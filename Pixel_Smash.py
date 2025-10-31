@@ -290,7 +290,6 @@ def main():
                 show_message("GAME OVER", subtext="", Wait=False)
                 running = False
                 pygame.time.wait(3000)
-                main()
 
         # Bonus
         for bonus in bonuses[:]:
@@ -340,3 +339,4 @@ def main():
     sys.exit()
 
 main()
+
