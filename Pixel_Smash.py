@@ -175,7 +175,8 @@ class Bonus:
             "fire": RED,
             "magnet": PURPLE,
             "slow": ORANGE,
-            "bigball": WHITE
+            "bigball": WHITE,
+            "life": GREEN
         }
         color = color_map.get(self.kind, YELLOW)
         pygame.draw.rect(screen, color, self.rect)
@@ -280,7 +281,7 @@ def main():
                 if block.hits <= 0:
                     blocks.remove(block)
                     if random.random() < 0.2: # probabilité d'avoir un bonus
-                        kind = random.choice(["expand", "fire", "magnet", "slow", "bigball"])
+                        kind = random.choice(["expand", "fire", "magnet", "slow", "bigball", "life"])
                         bonuses.append(Bonus(block.rect.x + 25, block.rect.y, kind))
 
         # Perte de balle
@@ -310,6 +311,8 @@ def main():
                 elif bonus.kind == "bigball":
                     ball.radius = int(ball.original_radius * 1.7)
                     ball.bigball_timer = 300  # 5 secondes
+                elif bonus.kind == "life":
+                    lives += 1
 
                 bonuses.remove(bonus)
             elif bonus.rect.top > HEIGHT:
@@ -340,6 +343,7 @@ def main():
     sys.exit()
 
 main()
+
 
 
 
