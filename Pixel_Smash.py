@@ -40,6 +40,7 @@ YELLOW = (255, 255, 0)
 PURPLE = (180, 50, 180)
 
 incertitude_rebond=5
+pygame.mouse.set_visible(False)
 
 def normalize_vector(vx, vy, target_speed):
     length = math.sqrt(vx**2 + vy**2)
@@ -339,4 +340,5 @@ def main():
     sys.exit()
 
 main()
+
 
