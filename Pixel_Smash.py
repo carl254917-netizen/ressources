@@ -334,7 +334,7 @@ def main():
                     lives += 1
                 elif bonus.kind == "toric":
                     ball.toric = True
-                    ball.toric_timer = 300  # 5 secondes
+                    ball.toric_timer = 420  # 7 secondes
 
                 bonuses.remove(bonus)
             elif bonus.rect.top > HEIGHT:
@@ -365,4 +365,5 @@ def main():
     sys.exit()
 
 main()
+
 
