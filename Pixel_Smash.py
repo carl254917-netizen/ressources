@@ -31,6 +31,7 @@ BIG_FONT = pygame.font.SysFont("Arial", 48)
 
 # Couleurs
 WHITE = (255, 255, 255)
+PINK = (255, 150, 160)
 BLACK = (0, 0, 0)
 GRAY = (50, 50, 50)
 RED = (200, 50, 50)
@@ -81,12 +82,15 @@ class Ball:
         self.launch_timer = 0  # Compteur de lancement (en frames)
         self.launch_duration = 120  # 2 secondes à 60 FPS
         self.fire = False
+        self.toric = False
         self.magnetic = False
         self.slow_timer = 0
         self.fire_timer = 0
         self.magnet_timer = 0
+        self.toric_timer = 0
         self.attached_to_paddle = False
         self.just_bounced = False  # Pour éviter les rebonds multiples
+        self.just_bounced_toric = False
         self.bigball_timer = 0
         self.original_radius = self.radius
 
@@ -116,10 +120,17 @@ class Ball:
         self.rect.y += int(self.velocity[1] * factor)
 
         if self.rect.left <= 0 or self.rect.right >= WIDTH:
-            self.rect.x *= 0.99
-            self.just_bounced_bord=True
-            self.velocity[0] *= -1
-            self.target_velocity[0] *= -1
+            if self.toric:
+                if not self.just_bounced_toric:
+                    self.rect.x = WIDTH-self.rect.x
+                    self.just_bounced_toric = True
+                else:
+                    self.just_bounced_toric = False
+            else:
+                self.rect.x = int((self.rect.x-WIDTH/2)*0.99+WIDTH/2)
+                self.just_bounced_bord=True
+                self.velocity[0] *= -1
+                self.target_velocity[0] *= -1
         if self.rect.top <= 0:
             self.velocity[1] *= -1
             self.target_velocity[1] *= -1
@@ -136,14 +147,21 @@ class Ball:
         
         if self.bigball_timer > 0:
             self.bigball_timer -= 1
-            if self.bigball_timer == 0:
-                self.radius = self.original_radius
+        if self.bigball_timer == 0:
+            self.radius = self.original_radius
+
+        if self.toric_timer > 0:
+            self.toric_timer -= 1
+        if self.toric_timer == 0:
+            self.toric = False
 
     def draw(self):
         if self.fire:
             color = RED
         elif self.magnetic:
             color = PURPLE
+        elif self.toric:
+            color = PINK
         elif self.slow_timer > 0:
             color = ORANGE
         else:
@@ -176,6 +194,7 @@ class Bonus:
             "magnet": PURPLE,
             "slow": ORANGE,
             "bigball": WHITE,
+            "toric": PINK,
             "life": GREEN
         }
         color = color_map.get(self.kind, YELLOW)
@@ -281,7 +300,7 @@ def main():
                 if block.hits <= 0:
                     blocks.remove(block)
                     if random.random() < 0.2: # probabilité d'avoir un bonus
-                        kind = random.choice(["expand", "fire", "magnet", "slow", "bigball", "life"])
+                        kind = random.choice(["expand", "fire", "magnet", "slow", "bigball", "life", "toric"])
                         bonuses.append(Bonus(block.rect.x + 25, block.rect.y, kind))
 
         # Perte de balle
@@ -313,6 +332,9 @@ def main():
                     ball.bigball_timer = 300  # 5 secondes
                 elif bonus.kind == "life":
                     lives += 1
+                elif bonus.kind == "toric":
+                    ball.toric = True
+                    ball.toric_timer = 300  # 5 secondes
 
                 bonuses.remove(bonus)
             elif bonus.rect.top > HEIGHT:
@@ -343,8 +365,4 @@ def main():
     sys.exit()
 
 main()
-
-
-
-
 
