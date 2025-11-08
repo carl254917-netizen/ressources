@@ -31,7 +31,7 @@ BIG_FONT = pygame.font.SysFont("Arial", 48)
 
 # Couleurs
 WHITE = (255, 255, 255)
-PINK = (255, 150, 160)
+PINK = (255, 150, 170)
 BLACK = (0, 0, 0)
 GRAY = (50, 50, 50)
 RED = (200, 50, 50)
@@ -365,5 +365,6 @@ def main():
     sys.exit()
 
 main()
+
 
 
