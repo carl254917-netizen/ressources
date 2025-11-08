@@ -90,7 +90,7 @@ class Ball:
         self.toric_timer = 0
         self.attached_to_paddle = False
         self.just_bounced = False  # Pour éviter les rebonds multiples
-        self.just_bounced_toric = False
+        self.just_bounced_toric = 0
         self.bigball_timer = 0
         self.original_radius = self.radius
 
@@ -121,11 +121,11 @@ class Ball:
 
         if self.rect.left <= 0 or self.rect.right >= WIDTH:
             if self.toric:
-                if not self.just_bounced_toric:
+                if not self.just_bounced_toric>0:
                     self.rect.x = WIDTH-self.rect.x
-                    self.just_bounced_toric = True
+                    self.just_bounced_toric = 2
                 else:
-                    self.just_bounced_toric = False
+                    self.just_bounced_toric += -1
             else:
                 self.rect.x = int((self.rect.x-WIDTH/2)*(0.995*self.velocity[0])+WIDTH/2)
                 self.just_bounced_bord=True
@@ -365,6 +365,7 @@ def main():
     sys.exit()
 
 main()
+
 
 
 
