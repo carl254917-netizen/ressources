@@ -127,7 +127,7 @@ class Ball:
                 else:
                     self.just_bounced_toric += -1
             else:
-                self.rect.x = int((self.rect.x-WIDTH/2)*(0.95)+WIDTH/2)
+                self.rect.x = int((self.rect.x-WIDTH/2)*(1)+WIDTH/2)
                 self.just_bounced_bord=True
                 self.velocity[0] *= -1
                 self.target_velocity[0] *= -1
@@ -365,6 +365,7 @@ def main():
     sys.exit()
 
 main()
+
 
 
 
