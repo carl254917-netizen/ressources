@@ -241,7 +241,7 @@ def wait_for_space():
 # Boucle principale
 def main():
     level = 1
-    speed = 6 # ← C’est ici que tu définis la vitesse initiale
+    speed = 7 # ← C’est ici que tu définis la vitesse initiale
     paddle = Paddle(speed)
     ball = Ball(speed)
     blocks = create_level()
@@ -266,6 +266,8 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                pass
 
         paddle.move(keys)
         ball.move(paddle, keys)
@@ -365,6 +367,7 @@ def main():
     sys.exit()
 
 main()
+
 
 
 
