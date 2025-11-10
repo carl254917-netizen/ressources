@@ -71,7 +71,7 @@ class Paddle:
             self.rect.x -= self.speed
         if mouse_buttons[2]:  # Bouton droit de la souris
             self.rect.x += self.speed
-    self.rect.clamp_ip(screen.get_rect())
+        self.rect.clamp_ip(screen.get_rect())
 
     def draw(self):
         pygame.draw.rect(screen, BLUE, self.rect)
@@ -370,6 +370,7 @@ def main():
     sys.exit()
 
 main()
+
 
 
 
