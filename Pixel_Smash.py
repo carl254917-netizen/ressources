@@ -62,12 +62,16 @@ class Paddle:
     def set_speed(self, new_speed):
         self.speed = new_speed
 
-    def move(self, keys):
+    def move(self, keys, mouse_buttons):
         if keys[pygame.K_LEFT]:
             self.rect.x -= self.speed
         if keys[pygame.K_RIGHT]:
             self.rect.x += self.speed
-        self.rect.clamp_ip(screen.get_rect())
+        if mouse_buttons[0]:  # Bouton gauche de la souris
+            self.rect.x -= self.speed
+        if mouse_buttons[2]:  # Bouton droit de la souris
+            self.rect.x += self.speed
+    self.rect.clamp_ip(screen.get_rect())
 
     def draw(self):
         pygame.draw.rect(screen, BLUE, self.rect)
@@ -123,11 +127,11 @@ class Ball:
             if self.toric:
                 if not self.just_bounced_toric>0:
                     self.rect.x = WIDTH-self.rect.x
-                    self.just_bounced_toric = 2
+                    self.just_bounced_toric = 4
                 else:
                     self.just_bounced_toric += -1
             else:
-                self.rect.x = int((self.rect.x-WIDTH/2)*(0.99)+WIDTH/2)
+                self.rect.x = int((self.rect.x-WIDTH/2)*(0.98)+WIDTH/2)
                 self.just_bounced_bord=True
                 self.velocity[0] *= -1
                 self.target_velocity[0] *= -1
@@ -256,6 +260,7 @@ def main():
     while running:
         screen.fill(BLACK)
         keys = pygame.key.get_pressed()
+        mouse_buttons = pygame.mouse.get_pressed()
 
         # Relance manuelle si la balle est attachée à la raquette
         if ball.attached_to_paddle and keys[pygame.K_SPACE]:
@@ -266,10 +271,8 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                pass
 
-        paddle.move(keys)
+        paddle.move(keys, mouse_buttons)
         ball.move(paddle, keys)
 
         # Collision balle / raquette
@@ -367,6 +370,7 @@ def main():
     sys.exit()
 
 main()
+
 
 
 
