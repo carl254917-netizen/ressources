@@ -203,7 +203,7 @@ def run_game():
         fall_time += clock.get_rawtime()
         game_time += clock.get_rawtime()
         if game_time > speed_increment_interval:
-            fall_speed = max(150, fall_speed * 0.95)  # vitesse minimale = 100 ms
+            fall_speed = max(50, fall_speed * 0.95)  # vitesse minimale = 100 ms
             game_time = 0  # réinitialise le compteur
 
         clock.tick()
@@ -279,6 +279,7 @@ def run_game():
 # Lancement
 show_menu()
 run_game()
+
 
 
 
