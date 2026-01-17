@@ -250,6 +250,16 @@ def run_game():
                     fall_time += -100
                 elif event.key == pygame.K_s and not check_collision(grid, current_piece, x, y + 1):
                     y += 1
+                elif event.key == pygame.K_e:
+                    rotated = rotate(current_piece, "right")
+                    if not check_collision(grid, rotated, x, y):
+                        current_piece = rotated
+                        fall_time += -100
+                elif event.key == pygame.K_a:
+                    rotated = rotate(current_piece, "left")
+                    if not check_collision(grid, rotated, x, y):
+                        current_piece = rotated
+                        fall_time += -100
                 elif event.key == pygame.K_KP_6:
                     rotated = rotate(current_piece, "right")
                     if not check_collision(grid, rotated, x, y):
@@ -279,6 +289,7 @@ def run_game():
 # Lancement
 show_menu()
 run_game()
+
 
 
 
