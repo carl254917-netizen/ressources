@@ -5,7 +5,7 @@ import subprocess
 import os
 
 # --- CONFIGURATION DES MISES À JOUR ---
-VERSION_ACTUELLE = "1.1"
+VERSION_ACTUELLE = "1.2"
 # Remplace ces URL par les liens "Raw" de tes fichiers sur GitHub
 URL_VERSION = "https://raw.githubusercontent.com/carl254917-netizen/ressources/main/Arcade_version.txt"
 URL_ARCADE_SCRIPT = "https://raw.githubusercontent.com/carl254917-netizen/ressources/main/Arcade.py"
@@ -91,7 +91,7 @@ def menu():
     root.configure(bg="black")
 
     window_width = 400
-    window_height = 350
+    window_height = 320
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
     x_position = (screen_width // 2) - (window_width // 2)
