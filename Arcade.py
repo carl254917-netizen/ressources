@@ -91,7 +91,7 @@ def menu():
     root.configure(bg="black")
 
     window_width = 400
-    window_height = 320
+    window_height = 300
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
     x_position = (screen_width // 2) - (window_width // 2)
