@@ -7,8 +7,8 @@ import os
 # --- CONFIGURATION DES MISES À JOUR ---
 VERSION_ACTUELLE = "1.0"
 # Remplace ces URL par les liens "Raw" de tes fichiers sur GitHub
-URL_VERSION = "https://raw.githubusercontent.com/TON_PROFIL/TON_DEPOT/main/version.txt"
-URL_ARCADE_SCRIPT = "https://raw.githubusercontent.com/TON_PROFIL/TON_DEPOT/main/Arcade.py"
+URL_VERSION = "https://raw.githubusercontent.com/carl254917-netizen/ressources/main/Arcade_version.txt"
+URL_ARCADE_SCRIPT = "https://raw.githubusercontent.com/carl254917-netizen/ressources/main/Arcade.py"
 
 # --- INSTALLATION DES DÉPENDANCES ---
 package = "requests"
