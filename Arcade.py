@@ -5,7 +5,7 @@ import subprocess
 import os
 
 # --- CONFIGURATION DES MISES À JOUR ---
-VERSION_ACTUELLE = "1.0"
+VERSION_ACTUELLE = "1.1"
 # Remplace ces URL par les liens "Raw" de tes fichiers sur GitHub
 URL_VERSION = "https://raw.githubusercontent.com/carl254917-netizen/ressources/main/Arcade_version.txt"
 URL_ARCADE_SCRIPT = "https://raw.githubusercontent.com/carl254917-netizen/ressources/main/Arcade.py"
@@ -71,12 +71,16 @@ def run_remote_python_script(url):
 
 url_pixel_smash = "https://raw.githubusercontent.com/carl254917-netizen/ressources/main/Pixel_Smash.py"
 url_tetris = "https://raw.githubusercontent.com/carl254917-netizen/ressources/main/Tetris.py"
+url_mario = "https://raw.githubusercontent.com/carl254917-netizen/ressources/main/super_mario_game.py"
 
 def a():
     run_remote_python_script(url_tetris)
 
 def b():
     run_remote_python_script(url_pixel_smash)
+
+def c():
+    run_remote_python_script(url_mario)
 
 # --- INTERFACE GRAPHIQUE ---
 def menu():
@@ -87,7 +91,7 @@ def menu():
     root.configure(bg="black")
 
     window_width = 400
-    window_height = 300
+    window_height = 350
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
     x_position = (screen_width // 2) - (window_width // 2)
@@ -102,6 +106,9 @@ def menu():
 
     button_b = tk.Button(root, text="Play Pixel Smash", command=b, bg="#33C1FF", fg="white", font=("Helvetica", 12), width=20)
     button_b.pack(pady=10)
+
+    button_c = tk.Button(root, text="Play Mario", command=c, bg="#28B463", fg="white", font=("Helvetica", 12), width=20)
+    button_c.pack(pady=10)
 
     root.mainloop()
 
