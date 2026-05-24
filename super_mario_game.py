@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-import os
 import sys
-import json
 import subprocess
 
 # --- VÉRIFICATION ET INSTALLATION DES DÉPENDANCES ---
@@ -47,28 +45,7 @@ COLOR_UI_HOVER = (100, 100, 100)
 
 TILE_SIZE = 40
 
-# --- SYSTÈME DE SAUVEGARDE ---
-SAVE_FILE = "progression_jeu.json"
-
-def charger_progression():
-    if not os.path.exists(SAVE_FILE):
-        data = {"niveau_max": 1, "pieces_totat": 0}
-        sauvegarder_progression(data)
-        return data
-    try:
-        with open(SAVE_FILE, "r") as f:
-            return json.load(f)
-    except:
-        return {"niveau_max": 1, "pieces_totat": 0}
-
-def sauvegarder_progression(data):
-    try:
-        with open(SAVE_FILE, "w") as f:
-            json.dump(data, f, indent=4)
-    except Exception as e:
-        print(f"Erreur de sauvegarde : {e}")
-
-# --- ENTIÈTES ET GRAPHISMES PROCÉDURAUX (PROPRES) ---
+# --- EN-TÊTES ET GRAPHISMES PROCÉDURAUX (PROPRES) ---
 def creer_surface_bloc(couleur, type_bloc):
     surf = pygame.Surface((TILE_SIZE, TILE_SIZE), pygame.SRCALPHA)
     surf.fill(couleur)
@@ -181,7 +158,7 @@ class Joueur(pygame.sprite.Sprite):
         if self.invincible > 0:
             self.invincible -= 1
 
-        # <-- NOUVELLE LOGIQUE DU CHAMPIGNON -->
+        # NOUVELLE LOGIQUE DU CHAMPIGNON
         if self.timer_champignon > 0:
             self.timer_champignon -= 1
             if self.timer_champignon == 0 and self.est_grand:
@@ -444,7 +421,7 @@ NIVEAUX_MAPS = [
             "                                          BBB              BBBB                     BBBBBB                                                                  BBBB             C   C                      ",
             "             C  C     BBBBBBBBBB         BBBBB            BBBBBB             C   C                    BB  BB           Q    Q                C   C         BBBBBB                                       ",
             "            BBBBBB                      BBBBBBB          BBBBBBBB           Q B Q B                                                         BBBBBBB       BBBBBBBB          Q B Q B                     ",
-            "     P                     E           BBBBBBBBB    E   BBBBBBBBBB            B       T      B         B           E   T     EB            BBBBBBBBB     BBBBBBBBBB                                  F  ",
+            "     P                     E           BBBBBBBBB    E   BBBBBBBBBB            B       E      B         B           E   E      B            BBBBBBBBB     BBBBBBBBBB                                  F  ",
             "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGG",
             "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGG",
             "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGG"
@@ -462,7 +439,7 @@ NIVEAUX_MAPS = [
             "                 BBBBBB            B        EB                               C                            BBBBBB               B                     C                                                      ",
             "                BBBBBBBB          BBGGGGGGGGBBB                                                          BBBBBBBB             BBGGGGGGGGBBB                                                                 ",
             "                                 BBGGGGGGGGGGBBB                       BBBB     BB                                           BBGGGGGGGGGGBBB                       BBBB                                     ",
-            "    P            E              BBGGGGGGGGGGGGBBB          E          BBBBBB   BBBB         T  B       B                E   BBGGGGGGGGGGGGBBB          T          BBBBBB                     F              ",
+            "    P            E              BBGGGGGGGGGGGGBBB  E       E          BBBBBB   BBBB         T  B       B                E   BBGGGGGGGGGGGGBBB     E    T          BBBBBB                     F              ",
             "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGG           ",
             "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGG           ",
             "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGG           "
@@ -500,7 +477,7 @@ NIVEAUX_MAPS = [
             "                                      BBB                  BBBBB                                    BBB                   BBBBB             BBBBBB             BBBB                  C   C                  ",
             "          C  C                       BBBBB                BBBBBBB                                  BBBBB                 BBBBBBB           BBBBBBBB           BBBBBB                                        ",
             "         BBBBBB                     BBBBBBB              BBBBBBBBB            C  C                BBBBBBB               BBBBBBBBB         BBBBBBBBBB         BBBBBBBB               Q B Q B                 ",
-            "  P                  T             BBBBBBBBB     BE     BBBBBBBBBBB          BBBBBB      E       BBBBBBBBB       BT                 EB   BBBBBBBBBBBB   E   BBBBBBBBBB                                   F  ",
+            "  P                  T            EBBBBBBBBB     BE     BBBBBBBBBBB          BBBBBB      E       BBBBBBBBB       BT                 EB   BBBBBBBBBBBB   E   BBBBBBBBBB                                   F  ",
             "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
             "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
             "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
@@ -517,7 +494,7 @@ NIVEAUX_MAPS = [
             "                                                                                                                                                                                                          ",
             "      B            B                  BBBBB               BBBBB        B          B                BBBBB                BBBBB        B        BBBBBB                                                      ",
             "                                     BBBBBBB             BBBBBBB                                  BBBBBBB              BBBBBBB               BBBBBB                                BBBB                   ",
-            "             Q      E   Q           BBBBBBBBB           BBBBBBBBB           Q      T   Q         BBBBBBBBB            BBBBBBBBB             BBBC C  BB         B   E    B         BBBBBB                  ",
+            "             Q      E   Q           BBBBBBBBB           BBBBBBBBB           Q      T   Q         BBBBBBBBB            BBBBBBBBB             BBBC C  BB         B   E  E B         BBBBBB                  ",
             "  P           GGGGGGGGGG           BBBBBBBBBBB    E    BBBBBBBBBBB           GGGGGGGGGG         BBBBBBBBBBB   T  E   BBBBBBBBBBB           BBB  E   BBB         GGGGGGGG         BBBBBBBB               F ",
             "GGGGGGG   GGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGG",
             "GGGGGGG   GGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGG   GGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGG",
@@ -557,7 +534,8 @@ class GestionnaireJeu:
         self.font_menu = pygame.font.SysFont("Arial", 24)
         self.font_jeu = pygame.font.SysFont("Consolas", 20)
         
-        self.progression = charger_progression()
+        # Progression en mémoire (n'est plus sauvegardée sur le disque dur)
+        self.progression = {"niveau_max": 1, "pieces_totat": 0}
         self.etat = "MENU_PRINCIPAL"
         self.index_niveau_actuel = 0
         
@@ -582,9 +560,8 @@ class GestionnaireJeu:
             btn = Bouton(x, y, 250, 50, texte, f"run_level_{i}" if unlocked else "locked")
             self.boutons_niveaux.append(btn)
             
-        # Boutons d'action en bas de l'écran
-        self.boutons_niveaux.append(Bouton(100, 480, 250, 50, "Effacer progression", "reset_progression"))
-        self.boutons_niveaux.append(Bouton(450, 480, 250, 50, "Retour", "menu_principal"))
+        # Bouton Retour (désormais centré)
+        self.boutons_niveaux.append(Bouton(275, 480, 250, 50, "Retour", "menu_principal"))
 
     def charger_niveau(self, index):
         self.index_niveau_actuel = index
@@ -642,7 +619,6 @@ class GestionnaireJeu:
                 if prochain_niveau > self.progression["niveau_max"] and prochain_niveau <= len(NIVEAUX_MAPS):
                     self.progression["niveau_max"] = prochain_niveau
                 self.progression["pieces_totat"] += self.joueur.pieces_recoltees
-                sauvegarder_progression(self.progression)
                 self.creer_boutons_niveaux()
                 
             elif event.type == USEREVENT + 2:
@@ -666,13 +642,6 @@ class GestionnaireJeu:
                             idx = int(btn.action_id.split("_")[-1])
                             self.charger_niveau(idx)
                             self.etat = "EN_JEU"
-                        elif btn.action_id == "reset_progression":
-                            # Remise à zéro des statistiques
-                            self.progression["niveau_max"] = 1
-                            self.progression["pieces_totat"] = 0
-                            sauvegarder_progression(self.progression)
-                            # Actualisation visuelle des cadenas
-                            self.creer_boutons_niveaux()
                         elif btn.action_id == "menu_principal":
                             self.etat = "MENU_PRINCIPAL"
                             
