@@ -5,7 +5,7 @@ import subprocess
 import os
 
 # --- CONFIGURATION DES MISES À JOUR ---
-VERSION_ACTUELLE = "4.0"
+VERSION_ACTUELLE = "4.1"
 
 # Remplace ces URL par les liens "Raw" de tes fichiers sur GitHub
 URL_VERSION = "https://raw.githubusercontent.com/carl254917-netizen/ressources/main/Arcade_version.txt"
