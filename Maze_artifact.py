@@ -136,7 +136,7 @@ class GameSession:
         # Placement de l'artefact : angle 100% aléatoire, distance proportionnelle au niveau
         # On utilise random.uniform directement sans graine (seed)
         angle = random.uniform(0, 2 * math.pi)
-        distance = 15 + (self.level * 10) # La distance continue d'augmenter avec le niveau
+        distance = 15 + (self.level * 8) # La distance continue d'augmenter avec le niveau
         self.art_x = int(math.cos(angle) * distance)
         self.art_y = int(math.sin(angle) * distance)
         
