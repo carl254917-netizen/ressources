@@ -4,14 +4,11 @@ import sys
 import subprocess
 import os
 
-# --- CONFIGURATION DES MISES À JOUR ---
 VERSION_ACTUELLE = "4.1"
 
-# Remplace ces URL par les liens "Raw" de tes fichiers sur GitHub
 URL_VERSION = "https://raw.githubusercontent.com/carl254917-netizen/ressources/main/Arcade_version.txt"
 URL_ARCADE_SCRIPT = "https://raw.githubusercontent.com/carl254917-netizen/ressources/main/Arcade.py"
 
-# --- INSTALLATION DES DÉPENDANCES ---
 package = "requests"
 try:
     import requests
@@ -20,18 +17,15 @@ except ImportError:
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
     import requests
 
-# --- SYSTÈME D'AUTO-MISE À JOUR ---
 def verifier_mise_a_jour():
     print(f"Version actuelle : {VERSION_ACTUELLE}")
     print("Vérification des mises à jour...")
 
     try:
-        # Télécharge le numéro de version depuis GitHub
         reponse = requests.get(URL_VERSION, timeout=5)
         reponse.raise_for_status()
         derniere_version = reponse.text.strip()
 
-        # Compare les versions
         if derniere_version != VERSION_ACTUELLE:
             print(f"Nouvelle version trouvée ({derniere_version}) ! Mise à jour en cours...")
             mettre_a_jour_le_script()
@@ -43,24 +37,20 @@ def verifier_mise_a_jour():
 
 def mettre_a_jour_le_script():
     try:
-        # Télécharge le nouveau code source
         reponse = requests.get(URL_ARCADE_SCRIPT, timeout=10)
         reponse.raise_for_status()
         nouveau_code = reponse.text
 
-        # Écrase le fichier actuel (__file__) avec le nouveau code
         with open(__file__, 'w', encoding='utf-8') as fichier_local:
             fichier_local.write(nouveau_code)
 
         print("Mise à jour réussie. Redémarrage du programme...")
 
-        # Redémarre le script instantanément avec la nouvelle version
         os.execl(sys.executable, sys.executable, *sys.argv)
 
     except Exception as e:
         print(f"Erreur lors de la mise à jour : {e}")
 
-# --- FONCTIONS DE JEUX ---
 def run_remote_python_script(url):
     try:
         response = requests.get(url)
@@ -87,7 +77,6 @@ def c():
 def d():
     run_remote_python_script(url_maze)
 
-# --- INTERFACE GRAPHIQUE ---
 def menu():
     import tkinter as tk
 
@@ -120,7 +109,6 @@ def menu():
 
     root.mainloop()
 
-# --- LANCEMENT ---
 if __name__ == "__main__":
     verifier_mise_a_jour()
     menu()
